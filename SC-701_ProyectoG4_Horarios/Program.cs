@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using SC_701_ProyectoG4_Horarios.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<HorariosContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("DB_SC-701_ProyectoG4_Horarios")));
 
 var app = builder.Build();
 

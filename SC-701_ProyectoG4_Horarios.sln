@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34518.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC-701_ProyectoG4_Horarios", "SC-701_ProyectoG4_Horarios\SC-701_ProyectoG4_Horarios.csproj", "{F8467094-73DC-4259-9884-DADA4B68D53D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC-701_ProyectoG4_Horarios.DAL", "SC-701_ProyectoG4_Horarios.DAL\SC-701_ProyectoG4_Horarios.DAL.csproj", "{71BE4255-A26F-4AB8-9F34-A48C9176E058}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F8467094-73DC-4259-9884-DADA4B68D53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8467094-73DC-4259-9884-DADA4B68D53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8467094-73DC-4259-9884-DADA4B68D53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71BE4255-A26F-4AB8-9F34-A48C9176E058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BE4255-A26F-4AB8-9F34-A48C9176E058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BE4255-A26F-4AB8-9F34-A48C9176E058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BE4255-A26F-4AB8-9F34-A48C9176E058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
