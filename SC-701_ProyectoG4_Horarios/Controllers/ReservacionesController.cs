@@ -57,8 +57,8 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre");
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion");
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento");
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Id");
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
             return View();
         }
 
@@ -79,8 +79,8 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioCreacionId);
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioModificacionId);
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioCreacionId);
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioModificacionId);
             return View(reservacion);
         }
 
@@ -100,8 +100,8 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioCreacionId);
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioModificacionId);
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioCreacionId);
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioModificacionId);
             return View(reservacion);
         }
 

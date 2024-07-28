@@ -50,7 +50,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
 
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre", "PrimerApellido");
             return View();
         }
 
@@ -85,7 +85,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre", profesor.UsuarioId);
             return View(profesor);
         }
 

@@ -18,7 +18,7 @@ namespace SC_701_ProyectoG4_Horarios.DAL
         [MaxLength(100)]
         public string Titulo { get; set;} // Profesor, Doctor...
 
-        public string UsuarioId { get; set; }
+        public string? UsuarioId { get; set; }
 
         // Propiedades de Navegacion
 
