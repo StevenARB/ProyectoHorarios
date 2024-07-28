@@ -25,7 +25,8 @@ namespace SC_701_ProyectoG4_Horarios.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
             // Relación Usuario - Profesor (uno a uno)
             modelBuilder.Entity<Usuario>()
                 .HasOne(u => u.Profesor)

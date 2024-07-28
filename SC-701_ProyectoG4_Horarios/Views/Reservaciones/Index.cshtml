@@ -71,13 +71,13 @@
                 @Html.DisplayFor(modelItem => item.Profesor.Departamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Clase.Id)
+                @Html.DisplayFor(modelItem => item.Clase.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsuarioCreacion.Email)
+                @Html.DisplayFor(modelItem => item.UsuarioCreacion.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsuarioModificacion.Email)
+                @Html.DisplayFor(modelItem => item.UsuarioModificacion.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

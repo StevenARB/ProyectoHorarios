@@ -3,14 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
+namespace SC_701_ProyectoG4_Horarios.DAL.Migrations.Horarios
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            
+
             migrationBuilder.CreateTable(
                 name: "Aulas",
                 columns: table => new
@@ -39,22 +41,6 @@ namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PrimerApellido = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    SegundoApellido = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Profesores",
                 columns: table => new
                 {
@@ -62,15 +48,15 @@ namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Departamento = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Titulo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profesores", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Profesores_Usuarios_UsuarioId",
+                        name: "FK_Profesores_AspNetUsers_UsuarioId",
                         column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -87,20 +73,32 @@ namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
                     Fecha = table.Column<DateOnly>(type: "date", nullable: false),
                     HoraInicio = table.Column<TimeOnly>(type: "time", nullable: false),
                     HoraFin = table.Column<TimeOnly>(type: "time", nullable: false),
-                    UsuarioCreacionId = table.Column<int>(type: "int", nullable: false),
+                    UsuarioCreacionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioModificacionId = table.Column<int>(type: "int", nullable: true),
+                    UsuarioModificacionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     FechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservaciones", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Reservaciones_AspNetUsers_UsuarioCreacionId",
+                        column: x => x.UsuarioCreacionId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reservaciones_AspNetUsers_UsuarioModificacionId",
+                        column: x => x.UsuarioModificacionId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Reservaciones_Aulas_AulaId",
                         column: x => x.AulaId,
                         principalTable: "Aulas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservaciones_Clases_ClaseId",
                         column: x => x.ClaseId,
@@ -112,19 +110,7 @@ namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
                         column: x => x.ProfesorId,
                         principalTable: "Profesores",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reservaciones_Usuarios_UsuarioCreacionId",
-                        column: x => x.UsuarioCreacionId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reservaciones_Usuarios_UsuarioModificacionId",
-                        column: x => x.UsuarioModificacionId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -174,8 +160,6 @@ namespace SC_701_ProyectoG4_Horarios.DAL.Migrations
             migrationBuilder.DropTable(
                 name: "Profesores");
 
-            migrationBuilder.DropTable(
-                name: "Usuarios");
         }
     }
 }

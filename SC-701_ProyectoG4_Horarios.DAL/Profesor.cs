@@ -18,12 +18,12 @@ namespace SC_701_ProyectoG4_Horarios.DAL
         [MaxLength(100)]
         public string Titulo { get; set;} // Profesor, Doctor...
 
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
 
         // Propiedades de Navegacion
 
         [BindNever]
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         [BindNever]
         public List<Reservacion>? Reservaciones { get; set; }

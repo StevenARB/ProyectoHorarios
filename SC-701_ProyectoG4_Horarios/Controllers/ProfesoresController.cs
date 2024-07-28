@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Profesores
+        [Authorize(Roles = "Profesor, Admin")]
         public async Task<IActionResult> Index()
         {
             var horariosContext = _context.Profesores.Include(p => p.Usuario);
@@ -45,9 +47,10 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Profesores/Create
+
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
             return View();
         }
 
@@ -64,11 +67,12 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
             return View(profesor);
         }
 
         // GET: Profesores/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +85,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Email", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
             return View(profesor);
         }
 
@@ -90,6 +94,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Departamento,Titulo,UsuarioId")] Profesor profesor)
         {
             if (id != profesor.Id)
@@ -117,11 +122,12 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Email", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
             return View(profesor);
         }
 
         // GET: Profesores/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,6 +149,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // POST: Profesores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var profesor = await _context.Profesores.FindAsync(id);
