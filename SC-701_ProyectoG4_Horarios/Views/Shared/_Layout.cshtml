@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,9 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                        </li>
+                       
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Profesores" asp-action="Index">Profesores</a>
                         </li>
@@ -40,7 +39,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @*  Validacion Rol *@
+                        @{
+                            var identidad = User.Identity as ClaimsIdentity;
+                            var roles = identidad.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+
+                            if (roles.Select(r => r.Value).Contains("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CrearUsuario">Crear Usuario</a>
+                                </li>
+                            }
+                        }
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -50,7 +62,7 @@
             @RenderBody()
         </main>
     </div>
-
+    
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - SC_701_ProyectoG4_Horarios - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

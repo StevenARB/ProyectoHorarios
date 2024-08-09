@@ -57,19 +57,19 @@
             @Html.DisplayNameFor(model => model.Clase)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Clase.Id)
+            @Html.DisplayFor(model => model.Clase.Descripcion)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.UsuarioCreacion)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioCreacion.Email)
+            @Model.UsuarioCreacion.Nombre @Model.UsuarioCreacion.PrimerApellido
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.UsuarioModificacion)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioModificacion.Email)
+            @Model.UsuarioModificacion.Nombre @Model.UsuarioModificacion.PrimerApellido
         </dd>
     </dl>
 </div>

@@ -37,27 +37,27 @@ namespace SC_701_ProyectoG4_Horarios.DAL
 
         [Required]
         [Display(Name = "Código Usuario Creación")]
-        public int UsuarioCreacionId { get; set; }
+        public string UsuarioCreacionId { get; set; }
 
         [Required]
         [Display(Name = "Fecha Creación")]
         public DateTime FechaCreacion { get; set; }
 
         [Display(Name = "Código Usuario Modificación")]
-        public int? UsuarioModificacionId { get; set; }
+        public string? UsuarioModificacionId { get; set; }
 
         [Display(Name = "Fecha Modificación")]
         public DateTime? FechaModificacion { get; set; }
 
         // Propiedades de Navegacion
 
-        public Aula Aula { get; set; }
+        public Aula? Aula { get; set; }
 
-        public Profesor Profesor { get; set; }
+        public Profesor? Profesor { get; set; }
 
         public Clase? Clase { get; set; }
 
-        public Usuario UsuarioCreacion { get; set; }
+        public Usuario? UsuarioCreacion { get; set; }
 
         public Usuario? UsuarioModificacion { get; set; }
     }

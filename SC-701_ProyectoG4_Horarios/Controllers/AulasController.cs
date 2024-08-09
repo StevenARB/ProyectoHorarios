@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Aulas
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Aulas.ToListAsync());
@@ -43,6 +45,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Aulas/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +56,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Capacidad")] Aula aula)
         {
             if (ModelState.IsValid)

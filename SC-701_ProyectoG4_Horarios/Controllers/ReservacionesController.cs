@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Reservaciones
+        [Authorize(Roles = "Profesor, Admin")]
         public async Task<IActionResult> Index()
         {
             var horariosContext = _context.Reservaciones.Include(r => r.Aula).Include(r => r.Clase).Include(r => r.Profesor).Include(r => r.UsuarioCreacion).Include(r => r.UsuarioModificacion);
@@ -49,13 +51,14 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Reservaciones/Create
+        [Authorize(Roles = "Profesor, Admin")]
         public IActionResult Create()
         {
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre");
-            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Id");
+            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion");
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento");
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Email");
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Email");
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
             return View();
         }
 
@@ -64,6 +67,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Profesor, Admin")]
         public async Task<IActionResult> Create([Bind("Id,AulaId,ProfesorId,ClaseId,Fecha,HoraInicio,HoraFin,UsuarioCreacionId,FechaCreacion,UsuarioModificacionId,FechaModificacion")] Reservacion reservacion)
         {
             if (ModelState.IsValid)
@@ -73,10 +77,10 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Id", reservacion.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioCreacionId);
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioModificacionId);
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioCreacionId);
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioModificacionId);
             return View(reservacion);
         }
 
@@ -94,10 +98,10 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 return NotFound();
             }
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Id", reservacion.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioCreacionId);
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioModificacionId);
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioCreacionId);
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioModificacionId);
             return View(reservacion);
         }
 
@@ -134,10 +138,10 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Id", reservacion.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioCreacionId);
-            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Email", reservacion.UsuarioModificacionId);
+            ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioCreacionId);
+            ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Id", reservacion.UsuarioModificacionId);
             return View(reservacion);
         }
 

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SC_701_ProyectoG4_Horarios.DAL.Profesor>
+﻿@using System.Security.Claims
+@model IEnumerable<SC_701_ProyectoG4_Horarios.DAL.Profesor>
 
 @{
     ViewData["Title"] = "Index";
@@ -35,12 +36,21 @@
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Email)
+                @item.Usuario.Nombre @item.Usuario.PrimerApellido
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+               @*  Validacion Rol *@
+                    @{
+                        var identidad = User.Identity as ClaimsIdentity;
+                        var roles = identidad.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+
+                        if (roles.Select(r => r.Value).Contains("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }
