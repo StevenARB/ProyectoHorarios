@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.FechaCreacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaModificacion)
+                @Html.DisplayNameFor(model => model.UsuarioCreacion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Aula)
@@ -38,10 +38,13 @@
                 @Html.DisplayNameFor(model => model.Clase)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UsuarioCreacion)
+                @Html.DisplayNameFor(model => model.FechaModificacion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UsuarioModificacion)
+            </th>
+            <th>
+                
             </th>
             <th></th>
         </tr>
@@ -62,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.FechaCreacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaModificacion)
+                    @Html.DisplayFor(modelItem => item.UsuarioCreacion.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Aula.Nombre)
@@ -74,10 +77,10 @@
                 @Html.DisplayFor(modelItem => item.Clase.Descripcion)
             </td>
             <td>
-                    @item.UsuarioCreacion.Nombre @item.UsuarioCreacion.PrimerApellido
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
             </td>
             <td>
-                    @item.UsuarioModificacion.Nombre @item.UsuarioModificacion.PrimerApellido
+                @Html.DisplayFor(modelItem => item.UsuarioModificacion.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
