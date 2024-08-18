@@ -68,46 +68,6 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Profesor, Admin")]
-        //public async Task<IActionResult> Create([Bind("Id,AulaId,ProfesorId,ClaseId,Fecha,HoraInicio,HoraFin")] Reservacion reservacion)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Verificar si ya existe una reserva para la misma aula en el mismo horario
-        //        var solapamientos = await _context.Reservaciones
-        //            .Where(r => r.AulaId == reservacion.AulaId && r.Fecha == reservacion.Fecha)
-        //            .AnyAsync(r =>
-        //                (reservacion.HoraInicio < r.HoraFin && reservacion.HoraFin > r.HoraInicio)
-        //            );
-
-        //        if (solapamientos)
-        //        {
-        //            ModelState.AddModelError("", "Ya existe una reserva para esta aula en el mismo intervalo de tiempo.");
-        //            ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-        //            ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
-        //            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-        //            return View(reservacion);
-        //        }
-
-        //        reservacion.UsuarioCreacionId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Asignar ID del usuario logueado
-        //        reservacion.FechaCreacion = DateTime.Now; // Asignar la fecha actual
-
-        //        // Asignar los valores de UsuarioModificacionId y FechaModificacion iniciales
-        //        reservacion.UsuarioModificacionId = reservacion.UsuarioCreacionId;
-        //        reservacion.FechaModificacion = reservacion.FechaCreacion;
-
-        //        _context.Add(reservacion);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-        //    ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
-        //    ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Departamento", reservacion.ProfesorId);
-        //    return View(reservacion);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Profesor, Admin")]
