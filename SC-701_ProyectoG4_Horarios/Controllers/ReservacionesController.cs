@@ -21,6 +21,25 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             _context = context;
         }
 
+        // Acción para obtener eventos en formato JSON
+        public JsonResult GetReservaciones()
+        {
+            var reservaciones = _context.Reservaciones
+                .Include(r => r.Clase)  // Incluir la clase si necesitas mostrar información adicional
+                .ToList();
+
+            var eventos = reservaciones.Select(r => new
+            {
+                id = r.Id,
+                title = r.Clase?.Descripcion ?? "Reservación",
+                start = r.Fecha.ToDateTime(r.HoraInicio), // Combina Fecha y HoraInicio
+                end = r.Fecha.ToDateTime(r.HoraFin),
+                url = $"/Reservaciones/Details/{r.Id}"  // URL para detalles
+            }).ToList();
+
+            return Json(eventos);
+        }
+
         // GET: Reservaciones
         [Authorize(Roles = "Profesor, Admin")]
         public async Task<IActionResult> Index()

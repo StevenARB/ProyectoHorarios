@@ -5,89 +5,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Calendario de Reservaciones</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nueva Reservación</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraFin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Aula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Profesor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Clase)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioModificacion)
-            </th>
-            <th>
-                
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.UsuarioCreacion.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aula.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profesor.Departamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clase.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioModificacion.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div id="calendar"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',  // Vista inicial del calendario
+            events: '/Reservaciones/GetReservaciones',  // URL para cargar los eventos
+            eventColor: '#dfe6e8', // Color de fondo de la caja del evento
+            eventTextColor: '#FFFFFF', // Color del texto dentro de la caja
+            eventTimeFormat: { // Cambia el formato de la hora
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: true // Usa "false" para 24h o "short" para "am/pm"
+            },
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            eventContent: function (arg) {
+                // Aquí se estructura el contenido del evento
+                let timeText = arg.timeText ? '<div>' + arg.timeText + '</div>' : '';
+                let titleText = arg.event.title ? '<div class="fc-event-title">' + arg.event.title + '</div>' : '';
+                return { html: timeText + titleText };
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
+<style>
+    /* Ajusta el título del evento */
+    .fc-event-title {
+        white-space: normal; /* Permite que el título del evento se divida en varias líneas */
+        margin-top: auto; /* Empuja el título hacia la parte inferior del contenedor del evento */
+        font-weight: bold; /* Estilo opcional para el título */
+        color: cornflowerblue; /* Cambia el color del título si lo deseas */
+    }
+
+    /* Asegura que el evento ocupe toda la altura de la celda y alinea correctamente */
+    .fc-daygrid-event {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Coloca el tiempo en la parte superior y el título en la inferior */
+        height: 100%; /* Asegura que el evento ocupe toda la altura de la celda */
+    }
+
+    /* Ajusta el estilo de la hora del evento */
+    .fc-event-time {
+        color: lightseagreen; /* Cambia el color de la hora si lo deseas */
+    }
+</style>

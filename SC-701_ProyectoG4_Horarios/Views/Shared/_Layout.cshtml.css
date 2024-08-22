@@ -46,3 +46,24 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Ajusta el título del evento */
+.fc-event-title {
+    white-space: normal; /* Permite que el título del evento se divida en varias líneas */
+    margin-top: auto; /* Empuja el título hacia la parte inferior del contenedor del evento */
+    font-weight: bold; /* Estilo opcional para el título */
+    color: blue; /* Cambia el color del título si lo deseas */
+}
+
+/* Asegura que el evento ocupe toda la altura de la celda y alinea correctamente */
+.fc-daygrid-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Coloca el tiempo en la parte superior y el título en la inferior */
+    height: 100%; /* Asegura que el evento ocupe toda la altura de la celda */
+}
+
+/* Ajusta el estilo de la hora del evento */
+.fc-event-time {
+    color: blue; /* Cambia el color de la hora si lo deseas */
+}
