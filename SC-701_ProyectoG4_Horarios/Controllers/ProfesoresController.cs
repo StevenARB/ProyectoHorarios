@@ -20,7 +20,6 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Profesores
-        [Authorize(Roles = "Profesor, Admin")]
         public async Task<IActionResult> Index()
         {
             var horariosContext = _context.Profesores.Include(p => p.Usuario);
@@ -47,7 +46,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // GET: Profesores/Create
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Select(u => new { Id = u.Id, NombreCompleto = u.Nombre + " " + u.PrimerApellido + " " + u.SegundoApellido }), "Id", "NombreCompleto");
@@ -57,6 +56,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // POST: Profesores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Departamento,Titulo,UsuarioId")] Profesor profesor)
@@ -92,9 +92,9 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         // POST: Profesores/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Departamento,Titulo,UsuarioId")] Profesor profesor)
         {
             if (id != profesor.Id)
@@ -147,9 +147,9 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         }
 
         // POST: Profesores/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var profesor = await _context.Profesores.FindAsync(id);

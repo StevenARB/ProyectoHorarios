@@ -1,8 +1,11 @@
-﻿@model SC_701_ProyectoG4_Horarios.DAL.Aula
+﻿@using System.Security.Claims
+@model SC_701_ProyectoG4_Horarios.DAL.Aula
 
 @{
     ViewData["Title"] = "Detalles Aula";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var identidad = User.Identity as ClaimsIdentity;
+    var roles = identidad.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
 }
 
 <h1>Detalles Aula</h1>
@@ -31,8 +34,13 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
-    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">Eliminar</a>
+    @{
+        if (roles.Select(r => r.Value).Contains("Admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
+            <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger">Eliminar</a>
+        }
+    }
 </div>
 
 <div class="mt-5">

@@ -4,15 +4,23 @@
 @{
     ViewData["Title"] = "Clases";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var identidad = User.Identity as ClaimsIdentity;
+    var roles = identidad.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
 }
 
 <h1 class="text-center display-5">Lista de Clases</h1>
 
 <hr>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Nueva Clase</a>
-</p>
+@{
+    if (roles.Select(r => r.Value).Contains("Admin"))
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Nueva Clase</a>
+        </p>
+    }
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -35,17 +43,14 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                    @{
-                        var identidad = User.Identity as ClaimsIdentity;
-                        var roles = identidad.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
-
-                        if (roles.Select(r => r.Value).Contains("Admin"))
-                        {
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
-                        }
+                @{
+                    if (roles.Select(r => r.Value).Contains("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
                     }
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">Detalles</a>
+                }
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">Detalles</a>
             </td>
         </tr>
 }
