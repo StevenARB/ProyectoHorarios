@@ -1,8 +1,81 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página de Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .background-image {
+        background-image: url('https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/media/image/2022/09/profesor-clase-2820305.jpg?tf=3840x');
+        background-size: cover;
+        background-position: center;
+        width: 120%; /* Imagen más ancha que la pantalla */
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -10%; /* Centra la imagen después de ampliar */
+    }
+
+    .content {
+        background-color: rgba(180, 180, 180, 0.85); /* Fondo más oscuro */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        max-width: 1000px; /* Div más ancho */
+        text-align: center;
+    }
+
+        .content h1 {
+            font-size: 4rem; /* Títulos más grandes */
+            margin-bottom: 20px;
+            color: #000; /* Títulos en negro */
+        }
+
+        .content h5 {
+            font-size: 1.5rem; /* Títulos secundarios más grandes */
+            margin-bottom: 10px;
+            color: #000; /* Títulos secundarios en negro */
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #000; /* Texto en negro */
+        }
+</style>
+
+<div class="background-image">
+    <div class="content">
+        <h1 class="text-success font-weight-bold">¡Bienvenidos, Profesores!</h1>
+        <p class="lead">Enseñar es más que impartir conocimiento; es inspirar y guiar a la próxima generación.</p>
+        <p>Nuestro sistema de reservas está diseñado para facilitar la planificación y gestión de sus clases, permitiéndole enfocarse en lo que realmente importa: la educación de sus estudiantes.</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <i class="fas fa-book-open fa-3x text-warning mb-3"></i>
+                <h5>Gestión de Recursos</h5>
+                <p>Administre todos sus recursos y materiales en un solo lugar, asegurando que siempre tenga lo que necesita para cada clase.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-users fa-3x text-info mb-3"></i>
+                <h5>Ambiente Colaborativo</h5>
+                <p>Colabore con otros profesores, compartiendo ideas y recursos para enriquecer la experiencia educativa de todos.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-clock fa-3x text-danger mb-3"></i>
+                <h5>Gestión del Tiempo</h5>
+                <p>Organice su tiempo eficientemente con nuestro calendario integrado, asegurando que cada minuto cuenta.</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                <h5>Innovación en la Enseñanza</h5>
+                <p>Utilice las últimas herramientas y tecnologías para hacer sus clases más interactivas y atractivas para los estudiantes.</p>
+            </div>
+            <div class="col-md-6">
+                <i class="fas fa-heart fa-3x text-success mb-3"></i>
+                <h5>Pasión por la Educación</h5>
+                <p>Inspire a sus estudiantes con su pasión por la enseñanza y su dedicación al aprendizaje continuo.</p>
+            </div>
+        </div>
+    </div>
 </div>
