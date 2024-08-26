@@ -21,12 +21,14 @@ namespace SC_701_ProyectoG4_Horarios.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<Usuario> _signInManager;
+        private readonly UserManager<Usuario> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Usuario> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Usuario> signInManager, ILogger<LoginModel> logger, UserManager<Usuario> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace SC_701_ProyectoG4_Horarios.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/Home");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -116,7 +118,17 @@ namespace SC_701_ProyectoG4_Horarios.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+
+                    if (isAdmin)
+                    {
+                        return Redirect("/Admin"); // Redirigir a /Admin si el usuario es Admin
+                    }
+                    else
+                    {
+                        return LocalRedirect(returnUrl); // Redirigir a la URL de retorno normal
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

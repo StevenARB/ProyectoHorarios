@@ -1,0 +1,61 @@
+﻿@model AdminEditarUsuarioViewModel
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form id="editForm" method="post">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <!-- Campo oculto para el Id del usuario -->
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-floating mb-3">
+                <input asp-for="Nombre" class="form-control" autocomplete="username" aria-required="true" placeholder="Nombre" />
+                <label asp-for="Nombre">Nombre</label>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="PrimerApellido" class="form-control" autocomplete="username" aria-required="true" placeholder="Primer Apellido" />
+                <label asp-for="PrimerApellido">Primer Apellido</label>
+                <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="SegundoApellido" class="form-control" autocomplete="username" aria-required="true" placeholder="Segundo Apellido" />
+                <label asp-for="SegundoApellido">Segundo Apellido</label>
+                <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="OldPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="OldPassword"></label>
+                <span asp-validation-for="OldPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Password"></label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="ConfirmPassword"></label>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="IdRol" class="form-control" asp-items="@ViewBag.Roles"></select>
+                <label asp-for="IdRol">Rol</label>
+                <span asp-validation-for="IdRol" class="text-danger"></span>
+            </div>
+            <button id="editSubmit" type="submit" class="w-100 btn btn-lg btn-warning">Guardar</button>
+        </form>
+    </div>
+</div>
+

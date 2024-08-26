@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Administración";
+}
+<h1 class="text-center display-5 fw-bold">Lista de Usuarios</h1>
+
+<hr>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Usuario</a>
+</p>
+
+<hr>
+
+<div class="row">
+    @foreach (var usuarios in ViewBag.usuarios)
+    {
+        <div class="col-sm-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Nombre:  </strong> @usuarios.Nombre</h5>
+                    <p class="card-text"><strong>Primer Apellido: </strong> @usuarios.PrimerApellido</p>
+                    <p class="card-text"><strong>Segundo Apellido: </strong> @usuarios.SegundoApellido</p>
+                    <p class="card-text"><strong>Email: </strong> @usuarios.Email</p>
+                    <a href="@Url.Action("DetallesUsuario","Admin", new { id = usuarios.Id})" class="btn btn-outline-primary">Detalles</a>
+                    <a href="@Url.Action("EditarUsuario","Admin", new { id = usuarios.Id})" class="btn btn-outline-warning">Editar</a>
+                    <a href="@Url.Action("EliminarUsuario","Admin", new { id = usuarios.Id})" class="btn btn-outline-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

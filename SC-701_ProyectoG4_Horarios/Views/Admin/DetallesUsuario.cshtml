@@ -1,0 +1,58 @@
+﻿@model SC_701_ProyectoG4_Horarios.DAL.Usuario
+
+@{
+    ViewData["Title"] = "Detalles Usuario";
+}
+
+<h1>Detalles Usuario</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrimerApellido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrimerApellido)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SegundoApellido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SegundoApellido)
+        </dd>
+        @{
+            var roles = ViewBag.Roles as List<string>;
+            if (roles != null && roles.Any())
+            {
+                <dt class="col-sm-2">Roles</dt>
+                <dd class="col-sm-10">
+                    @foreach (var role in roles)
+                    {
+                        @role
+
+                        <text> </text>
+                    }
+                </dd>
+            }
+        }
+    </dl>
+    <hr />
+    <a asp-action="EditarUsuario" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
+</div>
+
+<div class="mt-5">
+    <a asp-action="Index">Volver</a>
+</div>
