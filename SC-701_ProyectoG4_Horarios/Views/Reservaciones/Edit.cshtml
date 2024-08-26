@@ -31,20 +31,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
+                <input asp-for="Fecha" type="date" class="form-control" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HoraInicio" class="control-label"></label>
-                <input asp-for="HoraInicio" class="form-control" />
+                <input asp-for="HoraInicio" type="time" class="form-control" />
                 <span asp-validation-for="HoraInicio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HoraFin" class="control-label"></label>
-                <input asp-for="HoraFin" class="form-control" />
+                <input asp-for="HoraFin" type="time" class="form-control" />
                 <span asp-validation-for="HoraFin" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="UsuarioCreacionId" class="control-label"></label>
                 <select asp-for="UsuarioCreacionId" class="form-control" asp-items="ViewBag.UsuarioCreacionId"></select>
                 <span asp-validation-for="UsuarioCreacionId" class="text-danger"></span>
@@ -63,7 +63,7 @@
                 <label asp-for="FechaModificacion" class="control-label"></label>
                 <input asp-for="FechaModificacion" class="form-control" />
                 <span asp-validation-for="FechaModificacion" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

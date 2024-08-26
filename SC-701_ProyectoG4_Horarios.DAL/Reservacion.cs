@@ -35,11 +35,9 @@ namespace SC_701_ProyectoG4_Horarios.DAL
         [Display(Name = "Hora Fin")]
         public TimeOnly HoraFin { get; set; }
 
-        [Required]
         [Display(Name = "Código Usuario Creación")]
         public string UsuarioCreacionId { get; set; }
 
-        [Required]
         [Display(Name = "Fecha Creación")]
         public DateTime FechaCreacion { get; set; }
 
