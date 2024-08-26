@@ -3,79 +3,157 @@
 }
 
 <style>
-    .background-image {
-        background-image: url('https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/media/image/2022/09/profesor-clase-2820305.jpg?tf=3840x');
+    .hero-section {
+        background: url('/images/background.jpg') no-repeat center center;
         background-size: cover;
-        background-position: center;
-        width: 120%; /* Imagen más ancha que la pantalla */
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: -10%; /* Centra la imagen después de ampliar */
-    }
-
-    .content {
-        background-color: rgba(180, 180, 180, 0.85); /* Fondo más oscuro */
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-        max-width: 1000px; /* Div más ancho */
+        color: black;
+        padding: 50px 0;
         text-align: center;
     }
 
-        .content h1 {
-            font-size: 4rem; /* Títulos más grandes */
-            margin-bottom: 20px;
-            color: #000; /* Títulos en negro */
-        }
+    .hero-section h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-        .content h5 {
-            font-size: 1.5rem; /* Títulos secundarios más grandes */
-            margin-bottom: 10px;
-            color: #000; /* Títulos secundarios en negro */
-        }
+    .hero-section p {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-        .content p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #000; /* Texto en negro */
-        }
+    .features-section {
+        padding: 60px 0;
+    }
+
+    .feature-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card .icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .calendar-logo {
+        width: 100px;
+        height: 120px;
+        border: 2px solid #333;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+    }
+
+    .calendar-header {
+        background-color: #333;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        height: 30%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #1e90ff;
+        border-radius: 50%;
+    }
+
+    .calendar-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .date {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
+
 </style>
 
-<div class="background-image">
-    <div class="content">
-        <h1 class="text-success font-weight-bold">¡Bienvenidos, Profesores!</h1>
-        <p class="lead">Enseñar es más que impartir conocimiento; es inspirar y guiar a la próxima generación.</p>
-        <p>Nuestro sistema de reservas está diseñado para facilitar la planificación y gestión de sus clases, permitiéndole enfocarse en lo que realmente importa: la educación de sus estudiantes.</p>
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <i class="fas fa-book-open fa-3x text-warning mb-3"></i>
-                <h5>Gestión de Recursos</h5>
-                <p>Administre todos sus recursos y materiales en un solo lugar, asegurando que siempre tenga lo que necesita para cada clase.</p>
+<div class="hero-section">
+    <h1 class="text-primary">¡Bienvenidos, Profesores!</h1>
+    <p>Enseñar es más que impartir conocimiento; es inspirar y guiar a la próxima generación.</p>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="calendar-logo">
+        <div class="calendar-header">
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="calendar-body">
+            <div class="date">15</div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-book-open text-warning icon"></i>
+                        <h5 class="card-title">Gestión de Recursos</h5>
+                        <p class="card-text">Administre todos sus recursos y materiales en un solo lugar, asegurando que siempre tenga lo que necesita para cada clase.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-users fa-3x text-info mb-3"></i>
-                <h5>Ambiente Colaborativo</h5>
-                <p>Colabore con otros profesores, compartiendo ideas y recursos para enriquecer la experiencia educativa de todos.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-users text-info icon"></i>
+                        <h5 class="card-title">Ambiente Colaborativo</h5>
+                        <p class="card-text">Colabore con otros profesores, compartiendo ideas y recursos para enriquecer la experiencia educativa de todos.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-clock fa-3x text-danger mb-3"></i>
-                <h5>Gestión del Tiempo</h5>
-                <p>Organice su tiempo eficientemente con nuestro calendario integrado, asegurando que cada minuto cuenta.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-clock text-danger icon"></i>
+                        <h5 class="card-title">Gestión del Tiempo</h5>
+                        <p class="card-text">Organice su tiempo eficientemente con nuestro calendario integrado, asegurando que cada minuto cuenta.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
-                <h5>Innovación en la Enseñanza</h5>
-                <p>Utilice las últimas herramientas y tecnologías para hacer sus clases más interactivas y atractivas para los estudiantes.</p>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-lightbulb text-primary icon"></i>
+                        <h5 class="card-title">Innovación en la Enseñanza</h5>
+                        <p class="card-text">Utilice las últimas herramientas y tecnologías para hacer sus clases más interactivas y atractivas para los estudiantes.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <i class="fas fa-heart fa-3x text-success mb-3"></i>
-                <h5>Pasión por la Educación</h5>
-                <p>Inspire a sus estudiantes con su pasión por la enseñanza y su dedicación al aprendizaje continuo.</p>
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-heart text-success icon"></i>
+                        <h5 class="card-title">Pasión por la Educación</h5>
+                        <p class="card-text">Inspire a sus estudiantes con su pasión por la enseñanza y su dedicación al aprendizaje continuo.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
