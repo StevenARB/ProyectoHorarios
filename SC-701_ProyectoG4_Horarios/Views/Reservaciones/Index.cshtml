@@ -3,12 +3,15 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Link = "@fullcalendar";
 }
 
-<h1>Calendario de Reservaciones</h1>
+<h1 class="text-center display-5 fw-bold">Calendario de Reservaciones</h1>
+
+<hr>
 
 <p>
-    <a asp-action="Create">Crear Nueva Reservación</a>
+    <a asp-action="Create" class="btn btn-primary">Nueva Reservación</a>
 </p>
 
 <div id="calendar"></div>
@@ -16,12 +19,15 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 
+<script src="https://cdn.jsdelivr.net/npm/@Link/core@6.1.8/locales-all.global.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',  // Vista inicial del calendario
+            locale: 'es',  // Configura el idioma a español
             events: '/Reservaciones/GetReservaciones',  // URL para cargar los eventos
             eventColor: '#dfe6e8', // Color de fondo de la caja del evento
             eventTextColor: '#FFFFFF', // Color del texto dentro de la caja
@@ -42,7 +48,6 @@
                 return { html: timeText + titleText };
             }
         });
-
         calendar.render();
     });
 </script>

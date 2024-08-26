@@ -55,8 +55,10 @@ namespace SC_701_ProyectoG4_Horarios.DAL
 
         public Clase? Clase { get; set; }
 
+        [Display(Name = "Usuario Creación")]
         public Usuario? UsuarioCreacion { get; set; }
 
+        [Display(Name = "Usuario Modificación")]
         public Usuario? UsuarioModificacion { get; set; }
     }
 }

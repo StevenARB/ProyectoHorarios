@@ -31,15 +31,13 @@ namespace SC_701_ProyectoG4_Horarios.DAL
                 .Ignore(r => r.UsuarioModificacion);
 
             modelBuilder.Entity<Usuario>()
-            .Ignore(u => u.ReservacionesCreacion);
+                .Ignore(u => u.ReservacionesCreacion);
 
             modelBuilder.Entity<Usuario>()
-            .Ignore(u => u.ReservacionesModificacion);
+                .Ignore(u => u.ReservacionesModificacion);
 
             modelBuilder.Entity<Usuario>()
-            .Ignore(u => u.Profesor);
-
-
+                .Ignore(u => u.Profesor);
         }
     }
 }
