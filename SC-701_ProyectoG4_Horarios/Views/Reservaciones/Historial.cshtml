@@ -1,0 +1,45 @@
+﻿@model SC_701_ProyectoG4_Horarios.Models.HistorialViewModel
+
+@{
+    ViewData["Title"] = "Historial";
+}
+
+<h1>Historial de Reservaciones</h1>
+
+<h2>Pasadas</h2>
+@foreach (var reservacion in Model.ReservacionesPasadas)
+{
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Aula:</strong> @reservacion.Aula.Nombre</p>
+            <p><strong>Profesor:</strong> @reservacion.Profesor.UsuarioId</p>
+            <p><strong>Clase:</strong> @reservacion.Clase?.Descripcion</p>
+            <p><strong>Fecha:</strong> @reservacion.Fecha</p>
+            <p><strong>Hora Inicio:</strong> @reservacion.HoraInicio</p>
+            <p><strong>Hora Fin:</strong> @reservacion.HoraFin</p>
+            <p><strong>Usuario Creación:</strong> @reservacion.UsuarioCreacion?.Nombre</p>
+            <p><strong>Fecha Creación:</strong> @reservacion.FechaCreacion</p>
+            <p><strong>Usuario Modificación:</strong> @reservacion.UsuarioModificacion?.Nombre</p>
+            <p><strong>Fecha Modificación:</strong> @reservacion.FechaModificacion</p>
+        </div>
+    </div>
+}
+
+<h2>Futuras</h2>
+@foreach (var reservacion in Model.ReservacionesFuturas)
+{
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Aula:</strong> @reservacion.Aula.Nombre</p>
+            <p><strong>Profesor:</strong> @reservacion.Profesor.UsuarioId</p>
+            <p><strong>Clase:</strong> @reservacion.Clase?.Descripcion</p>
+            <p><strong>Fecha:</strong> @reservacion.Fecha</p>
+            <p><strong>Hora Inicio:</strong> @reservacion.HoraInicio</p>
+            <p><strong>Hora Fin:</strong> @reservacion.HoraFin</p>
+            <p><strong>Usuario Creación:</strong> @reservacion.UsuarioCreacion?.Nombre</p>
+            <p><strong>Fecha Creación:</strong> @reservacion.FechaCreacion</p>
+            <p><strong>Usuario Modificación:</strong> @reservacion.UsuarioModificacion?.Nombre</p>
+            <p><strong>Fecha Modificación:</strong> @reservacion.FechaModificacion</p>
+        </div>
+    </div>
+}

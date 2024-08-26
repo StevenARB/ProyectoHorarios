@@ -1,14 +1,13 @@
 ﻿@model SC_701_ProyectoG4_Horarios.DAL.Reservacion
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles Reservación";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Detalles Reservación</h1>
 
 <div>
-    <h4>Reservacion</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -48,10 +47,10 @@
             @Html.DisplayFor(model => model.Aula.Nombre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profesor)
+            @Html.DisplayNameFor(model => model.Profesor.Id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Profesor.Departamento)
+            @Html.DisplayFor(model => model.Profesor.Id)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Clase)
@@ -63,17 +62,23 @@
             @Html.DisplayNameFor(model => model.UsuarioCreacion)
         </dt>
         <dd class = "col-sm-10">
-            @Model.UsuarioCreacion.Nombre @Model.UsuarioCreacion.PrimerApellido
+            @Html.DisplayFor(model => model.UsuarioCreacion.Nombre)
+            @Html.DisplayFor(model => model.UsuarioCreacion.PrimerApellido)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.UsuarioModificacion)
         </dt>
         <dd class = "col-sm-10">
-            @Model.UsuarioModificacion.Nombre @Model.UsuarioModificacion.PrimerApellido
+            @Html.DisplayFor(model => model.UsuarioModificacion.Nombre)
+            @Html.DisplayFor(model => model.UsuarioModificacion.PrimerApellido)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Eliminar</a>
+</div>
+
+<div class="mt-5">
+    <a asp-action="Index">Volver</a>
 </div>
