@@ -50,7 +50,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
 
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre", "PrimerApellido");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Select(u => new { Id = u.Id, NombreCompleto = u.Nombre + " " + u.PrimerApellido + " " + u.SegundoApellido }), "Id", "NombreCompleto");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Select(u => new { Id = u.Id, NombreCompleto = u.Nombre + " " + u.PrimerApellido + " " + u.SegundoApellido }), "Id", "NombreCompleto", profesor.UsuarioId);
             return View(profesor);
         }
 
@@ -85,7 +85,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Nombre", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Select(u => new { Id = u.Id, NombreCompleto = u.Nombre + " " + u.PrimerApellido + " " + u.SegundoApellido }), "Id", "NombreCompleto", profesor.UsuarioId);
             return View(profesor);
         }
 
@@ -122,7 +122,7 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", profesor.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios.Select(u => new { Id = u.Id, NombreCompleto = u.Nombre + " " + u.PrimerApellido + " " + u.SegundoApellido }), "Id", "NombreCompleto", profesor.UsuarioId);
             return View(profesor);
         }
 

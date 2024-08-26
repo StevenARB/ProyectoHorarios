@@ -77,7 +77,16 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
         public IActionResult Create()
         {
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre");
-            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id");
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(),
+                        "Id",
+                        "NombreCompleto");
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion");
             ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
             ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre");
@@ -110,7 +119,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 {
                     ModelState.AddModelError("", "La fecha y hora de la reserva no pueden ser anteriores a la fecha y hora actual.");
                     ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-                    ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+                    ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id",
+                        "NombreCompleto",
+                        reservacion.ProfesorId);
                     ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
                     return View(reservacion);
                 }
@@ -126,7 +145,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 {
                     ModelState.AddModelError("", "Ya existe una reserva para esta aula en el mismo intervalo de tiempo.");
                     ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-                    ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+                    ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id", 
+                        "NombreCompleto", 
+                        reservacion.ProfesorId);
                     ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
                     return View(reservacion);
                 }
@@ -143,7 +172,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id", 
+                        "NombreCompleto", 
+                        reservacion.ProfesorId);
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             return View(reservacion);
         }
@@ -164,7 +203,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                 return NotFound();
             }
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id",
+                        "NombreCompleto", 
+                        reservacion.ProfesorId);
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             ViewData["UsuarioCreacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioCreacionId);
             ViewData["UsuarioModificacionId"] = new SelectList(_context.Usuarios, "Id", "Nombre", reservacion.UsuarioModificacionId);
@@ -279,7 +328,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                     {
                         ModelState.AddModelError("", "La fecha y hora de la reserva no pueden ser anteriores a la fecha y hora actual.");
                         ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-                        ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+                        ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id", 
+                        "NombreCompleto", 
+                        reservacion.ProfesorId);
                         ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
                         return View(reservacion);
                     }
@@ -294,8 +353,18 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
                     if (solapamientos)
                     {
                         ModelState.AddModelError("", "Ya existe una reserva para esta aula en el mismo intervalo de tiempo.");
-                        ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
                         ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
+                        ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id", 
+                        "NombreCompleto", 
+                        reservacion.ProfesorId);
                         ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
                         return View(reservacion);
                     }
@@ -323,7 +392,17 @@ namespace SC_701_ProyectoG4_Horarios.Controllers
             }
 
             ViewData["AulaId"] = new SelectList(_context.Aulas, "Id", "Nombre", reservacion.AulaId);
-            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Id", reservacion.ProfesorId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores
+                        .Include(p => p.Usuario)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            NombreCompleto = p.Usuario.Nombre + " " + p.Usuario.PrimerApellido + " " + p.Usuario.SegundoApellido
+                        })
+                        .ToList(), 
+                        "Id", 
+                        "Id", 
+                        reservacion.ProfesorId);
             ViewData["ClaseId"] = new SelectList(_context.Clases, "Id", "Descripcion", reservacion.ClaseId);
             return View(reservacion);
         }
